@@ -1,28 +1,29 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+v-container
+  v-btn(@click="swapLang()")
+    v-icon mdi-translate
+  calendar(@select="selectDay($event)" :lang="lang")
+  p Выбрана дата: {{date}}
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Calendar from './components/Calendar.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { Calendar },
+  data() {
+    return {
+      date: '',
+      lang: 'Rus',
+    };
+  },
+  methods: {
+    selectDay(event) {
+      this.date = event;
+    },
+    swapLang() {
+      this.lang = this.lang === 'Rus' ? 'Eng' : 'Rus';
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style/>
